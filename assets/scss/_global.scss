@@ -1,0 +1,55 @@
+html {
+  background-color: white;
+}
+
+body {
+  line-height: 1.6;
+  margin: 0;
+}
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-family: inherit;
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+a,
+a:focus,
+a:hover {
+  text-decoration: none;
+}
+
+ol, ul, dl {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+img {
+  vertical-align: middle;
+}
+
+div {
+  line-height: 1;
+}

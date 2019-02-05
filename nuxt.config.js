@@ -1,5 +1,6 @@
 const pkg = require('./package')
 
+const isDebug = () => process.env.APP_DEBUG && process.env.APP_DEBUG !== 'false'
 
 module.exports = {
   mode: 'universal',
@@ -37,6 +38,31 @@ module.exports = {
   plugins: [
     '@/plugins/element-ui'
   ],
+  router: {
+    base: '/',
+    middleware: ['check-auth'],
+    extendRoutes(routes) {
+      routes.push({
+        name: 'app-root',
+        path: '/',
+        redirect: { name: 'home' }
+      })
+    },
+    parseQuery(query) {
+      return require('query-string').parse(query, {
+        arrayFormat: 'bracket'
+      })
+    },
+    stringifyQuery(params) {
+      if (Object.keys(params).length === 0) {
+        return ''
+      }
+      const query = require('query-string').stringify(params, {
+        arrayFormat: 'bracket'
+      })
+      return `?${query}`
+    }
+  },
 
   /*
   ** Nuxt.js modules
@@ -47,6 +73,15 @@ module.exports = {
   /*
   ** Build configuration
   */
+  modules: ['@nuxtjs/axios'],
+  axios: {
+    baseURL: process.env.API_ROOT || 'http://localhost:8000',
+    redirectError: {
+      401: '/logout'
+    },
+    debug: isDebug()
+  },
+
   build: {
     transpile: [/^element-ui/],
     
