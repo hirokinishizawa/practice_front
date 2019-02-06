@@ -3,7 +3,7 @@ const pkg = require('./package')
 const isDebug = () => process.env.APP_DEBUG && process.env.APP_DEBUG !== 'false'
 
 module.exports = {
-  mode: 'universal',
+  mode: 'spa',
 
   /*
   ** Headers of the page
@@ -45,7 +45,7 @@ module.exports = {
       routes.push({
         name: 'app-root',
         path: '/',
-        redirect: { name: 'home' }
+        redirect: { name: '/' }
       })
     },
     parseQuery(query) {
@@ -84,12 +84,12 @@ module.exports = {
 
   build: {
     transpile: [/^element-ui/],
-    
+
     /*
     ** You can extend webpack config here
     */
     extend(config, ctx) {
-      
+
     }
   }
 }
