@@ -52,15 +52,13 @@ export default {
   methods: {
     async onSubmit() {
       this.isBusy = true
-      await authApi
-        .register(this, this.formData)
-        .then(res => {
-          this.$router.push({ name: 'login' })
-        })
-        .catch(err => {
+      try {
+        await authApi.register(this, this.formData)
+        this.$router.push({ name: 'login' })
+      } catch(err) {
           this.isBusy = false
           console.error(err)
-        })
+      }
     }
   }
 }
