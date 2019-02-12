@@ -1,13 +1,11 @@
 import { setAuthData, unsetAuthData, parseJWToken } from '~/utils/auth'
 import api from '~/api/auth'
 
-const namespaced = true
-
-const state = {
+export const state = {
   accessToken: null
 }
 
-const getters = {
+export const getters = {
   accessToken: state => {
     return state.accessToken
   },
@@ -16,7 +14,7 @@ const getters = {
   }
 }
 
-const actions = {
+export const actions = {
   async fetchAccessToken({ commit }, form) {
     try {
       const authData = await api.login(this, form)
@@ -42,19 +40,11 @@ const actions = {
   }
 }
 
-const mutations = {
+export const mutations = {
   addToken(state, data) {
     state.accessToken = data.token
   },
   removeToken(state) {
     state.accessToken = null
   }
-}
-
-export default {
-  namespaced,
-  state,
-  getters,
-  actions,
-  mutations
 }

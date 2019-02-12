@@ -1,7 +1,12 @@
 export default async ({ store, app, route, redirect }) => {
   if (!store.getters['auth/accessToken']) {
     const next = encodeURIComponent(route.fullPath)
-    return redirect(`/login?next=${next}`)
+    return redirect({
+      name: 'login',
+      query: {
+        next: next
+      }
+    })
   }
 
   app.$axios.setToken(store.getters['auth/accessToken'], 'Bearer')
@@ -12,7 +17,12 @@ export default async ({ store, app, route, redirect }) => {
       await store.dispatch('auth/refreshAccessToken')
     } catch (e) {
       const next = encodeURIComponent(route.fullPath)
-      return redirect(`/login?next=${next}`)
+      return redirect({
+        name: 'login',
+        query: {
+          next: next
+        }
+      })
     }
     app.$axios.setToken(store.getters['auth/accessToken'], 'Bearer')
   }

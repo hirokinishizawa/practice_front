@@ -6,7 +6,7 @@
 import { unsetAuthData } from '~/utils/auth'
 
 export default {
-  layout: 'noScroll',
+  layout: 'default',
   head() {
     return {
       title: 'ログアウト'

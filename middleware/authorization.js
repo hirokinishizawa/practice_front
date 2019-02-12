@@ -5,17 +5,12 @@ const policies = {
 }
 
 const satisfiedAll = (user, givenPolicies) => {
-  let can = false
   for (let policy of givenPolicies) {
     if (policies[policy]) {
-      can = policies[policy](user)
-      // ひとつでも false ならエラー
-      if (!can) {
-        return false
-      }
+      return policies[policy](user)
     }
   }
-  return can
+  return false
 }
 
 export default ({ store, route, error }) => {
@@ -23,7 +18,7 @@ export default ({ store, route, error }) => {
   const givenPolicies = route.meta.map(meta => {
     return meta.authorization.policy
   })
-  let can = satisfiedAll(user, givenPolicies)
+  const can = satisfiedAll(user, givenPolicies)
   if (!can) {
     return error({
       statusCode: 404
