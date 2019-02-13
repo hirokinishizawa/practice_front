@@ -16,7 +16,7 @@ export default {
     unsetAuthData()
     this.$store.commit('auth/removeToken')
     this.$store.commit('user/remove')
-    window.location.replace(this.$router.resolve({ name: 'login' }).href)
+    this.$router.replace({ name: 'login' })
   }
 }
 </script>
