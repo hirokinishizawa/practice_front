@@ -1,5 +1,5 @@
 export default ({ store, redirect }) => {
   if (store.getters['auth/accessToken']) {
-    return redirect({ name: '' })
+    return redirect({ name: '/' })
   }
 }

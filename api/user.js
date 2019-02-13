@@ -1,5 +1,5 @@
 export default {
     getMe(app) {
-      return app.$axios.$post('/api/me')
+      return app.$axios.$get('/api/me')
     },
   }
